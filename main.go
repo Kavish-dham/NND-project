@@ -108,11 +108,11 @@ func (lb *LoadBalancer) serveProxy(rw http.ResponseWriter, req *http.Request) {
 // 		}
 // 	}
 
-// 	fmt.Println("\nList of available servers along with their healths:")
-// 	for i := 0; i < len(lb.servers); i++ {
-// 		fmt.Printf("%d. %s\n", i+1, lb.servers[(lb.roundRobinCount+i)%len(lb.servers)].Address())
-// 	}
-// }
+//		fmt.Println("\nList of available servers along with their healths:")
+//		for i := 0; i < len(lb.servers); i++ {
+//			fmt.Printf("%d. %s\n", i+1, lb.servers[(lb.roundRobinCount+i)%len(lb.servers)].Address())
+//		}
+//	}
 func (lb *LoadBalancer) displayServerHealthAndOrder() {
 	fmt.Println("[Server Health Status]")
 	for _, server := range lb.servers {
@@ -126,11 +126,11 @@ func (lb *LoadBalancer) displayServerHealthAndOrder() {
 
 func main() {
 	servers := []Server{
-		newSimpleServer("https://example.com"),
-		newSimpleServer("https://jsonplaceholder.typicode.com"),
-		newSimpleServer("https://api.publicapis.org"),
-		newSimpleServer("https://dog.ceo/api/breeds/list/all"),
-		newSimpleServer("https://nonexistentwebsite123.com"), // Non-existent server
+		newSimpleServer("http://localhost:5000"),
+		newSimpleServer("http://localhost:5001"),
+		newSimpleServer("http://localhost:5002"),
+		newSimpleServer("http://localhost:5003"),
+		newSimpleServer("http://localhost:5004"), // not working
 	}
 
 	lb := NewLoadBalancer(":8081", servers)
